@@ -4,18 +4,18 @@ ion-view.view-home(view-title="Home")
       i.icon.ion-ios-search.placeholder-icon
       input(
         type="search",
-        ng-model="search.query", 
+        ng-model="search.query",
         placeholder="Rechercher")
     button.button.button-clear.button-positive(
       ng-disabled="search.query.length < 3",
       on-tap="homeController.search()") OK
   ion-content.has-subheader
-    ion-list 
+    ion-list
       ion-item(ng-if="search.results.length < 1")
         | Fait une recherche poulet!
       ion-item.item-icon-right(
         ui-state = "STATE_DETAILS",
-        ng-repeat = "result in search.results",
+        ng-repeat = "result in search.results | orderBy: '-release_date'",
         ui-state-params = "{ id : result.id}")
         | {{result.title}}
         i.icon.ion-ios-arrow-forward
